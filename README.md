@@ -27,36 +27,36 @@ All tunable settings live at the top of `main.js`:
 
 ## CODE
 
-// ==========================================
-// 1. CONSTANTES DE FÍSICAS Y CONFIGURACIÓN
-// ==========================================
-const SPEED = 220;
-const JUMP_FORCE = 520;
-const GRAVITY = 1200;
-const WALL_SLIDE_SPEED = 15;   // Caída lenta para agarre firme en pared
-const WALL_JUMP_FORCE = 500;   // Impulso hacia arriba al trepar
-const WALL_COYOTE_TIME = 0.16; // Margen de tiempo para saltar tras soltar el muro
-const ENEMY_SPEED = 60;        // Velocidad de patrulla del enemigo
-const TILE_SIZE = 32;
+     // ==========================================
+     // 1. CONSTANTES DE FÍSICAS Y CONFIGURACIÓN
+       // ==========================================
+    const SPEED = 220;
+    const JUMP_FORCE = 520;
+    const GRAVITY = 1200;
+    const WALL_SLIDE_SPEED = 15;   // Caída lenta para agarre firme en pared
+    const WALL_JUMP_FORCE = 500;   // Impulso hacia arriba al trepar
+    const WALL_COYOTE_TIME = 0.16; // Margen de tiempo para saltar tras soltar el muro
+    const ENEMY_SPEED = 60;        // Velocidad de patrulla del enemigo
+    const TILE_SIZE = 32;
 
-// ==========================================
-// 2. INICIALIZACIÓN
-// ==========================================
-kaplay({
+     // ==========================================
+     // 2. INICIALIZACIÓN
+    // ==========================================
+    kaplay({
     width: 640,
     height: 360,
     letterbox: true,
     background: [20, 24, 34],
-});
+    });
 
-setGravity(GRAVITY);
+    setGravity(GRAVITY);
 
-// ==========================================
-// 3. MAPA DE TEXTO (DATA DESACOPLADA)
-// '@' = Inicio | '#' = Suelo/Muro | '^' = Pinchos
-// 'E' = Enemigo patrulla | '*' = Moneda | '>' = Meta
-// ==========================================
-const LEVEL_MAP = [
+    // ==========================================
+    // 3. MAPA DE TEXTO (DATA DESACOPLADA)
+    // '@' = Inicio | '#' = Suelo/Muro | '^' = Pinchos
+    // 'E' = Enemigo patrulla | '*' = Moneda | '>' = Meta
+    // ==========================================
+    const LEVEL_MAP = [
     "                                                                               ",
     "                                                                   *            ",
     "                                          #                  #######             ",
@@ -69,9 +69,9 @@ const LEVEL_MAP = [
     "     @      #        # *#    #    #       #   E    #            E*       ##############",
     "#########################    # *  #      ###########         ##############",
     "############  ###########^^^##### #^^^^^ ###########                     ##############",
-];
-
-const LEVEL_CONFIG = {
+    ];
+ 
+    const LEVEL_CONFIG = {
     tileWidth: TILE_SIZE,
     tileHeight: TILE_SIZE,
     tiles: {
@@ -97,14 +97,12 @@ const LEVEL_CONFIG = {
             anchor("botleft"),
             "goal",
         ],
-    },
-};
+                },
+       };
 
-// ==========================================
-// 4. ESCENA DEL JUEGO
-// ==========================================
-scene("game", () => {
-    addLevel(LEVEL_MAP, LEVEL_CONFIG);
+  
+    scene("game", () => {
+         addLevel(LEVEL_MAP, LEVEL_CONFIG);
 
     let playerSpawn = vec2(64, 200);
     const enemyPositions = [];
@@ -257,12 +255,12 @@ scene("game", () => {
     player.onCollide("hazard", () => go("game"));
     player.onCollide("enemy", () => go("game"));
     player.onCollide("goal", () => go("win"));
-});
+    });
 
-// ==========================================
-// 5. PANTALLA FINAL
-// ==========================================
-scene("win", () => {
+    // ==========================================
+    // 5. PANTALLA FINAL
+    // ==========================================
+    scene("win", () => {
     add([
         text("CLEAR", { size: 32 }),
         pos(width() / 2, height() / 2 - 20),
@@ -276,6 +274,6 @@ scene("win", () => {
     ]);
 
     onKeyPress("space", () => go("game"));
-});
+    });
 
-go("game");
+    go("game");
